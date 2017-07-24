@@ -1,6 +1,6 @@
 {
   "name": "hunterslogger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A utility for managing console logs within a JavaScript application",
   "main": "dist/logger.js",
   "scripts": {

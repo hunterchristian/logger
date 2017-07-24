@@ -5,10 +5,15 @@ A utility for managing console logs within a JavaScript application. This utilit
 the format of application logs.
 
 ##### Tables of contents
+* [Installing](#installing)
 * [Usage](#usage)  
 * [Documentation generated from JSDocs in source code](#classes)  
 * [Contributing](#contributing)  
 * [Testing](#testing)  
+
+<a name="installing"></a>
+# Installing
+`npm install --save hunterslogger`
 
 <a name="usage"></a>
 # Usage
