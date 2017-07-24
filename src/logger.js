@@ -40,7 +40,7 @@ class Logger {
      */
     warn(message) {
         verifyVariableIsType(message, 'string');
-        console.warn(`${this.moduleName}: ${message}`);
+        //console.warn(`${this.moduleName}: ${message}`);
     }
 
     /**
