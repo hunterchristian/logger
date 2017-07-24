@@ -122,10 +122,6 @@ Tests can be run with the following command: `npm run test`
 I wanted to maintain a build status, so I decided to use Travis CI after finding the following StackOverflow answer after
 some googling: https://stackoverflow.com/questions/13546097/how-do-show-my-tests-passing-failing-in-github
 
-Note that the "test" command in the "scripts" section of package.json has an "|| true" at the end. This is so that the
-script exits with exit code 0 to prevent the annoying "npm ERR!" logs that print out each time the tests are run.
-I got the idea from this github issue: https://github.com/npm/npm/issues/6124
-
 Since specs are written using ES2015 syntax, spec files must be transpiled using babel. I detail how I created this build
 step below.
 
