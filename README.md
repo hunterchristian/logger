@@ -19,7 +19,7 @@ the format of application logs.
 # Usage
 
 ```javascript
-import Logger from 'logger';
+import Logger from 'hunterslogger';
 const logger = new Logger('nameOfThisFile');
 
 ...
