@@ -1,5 +1,6 @@
 # logger
-A utility for managing console logs within a JavaScript application
+A utility for managing console logs within a JavaScript application. This utility allows for centralized control over
+the format of application logs.
 
 # Usage
 ```javascript
@@ -96,7 +97,7 @@ Verify that a given variable is of a particular type.
 
 # Contributing
 1. Pull down the code into a local git repo
-2. `npm install`
+2. Install the development dependencies: `npm install`
 3. Make your changes (be sure to have unit tests covering your changes)
 4. Run the unit tests: `npm run test`
 5. If all of the unit tests pass, build the source code: `npm run build`
