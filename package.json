@@ -1,0 +1,29 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "A utility for managing console logs within a JavaScript application",
+  "main": "src/logger.js",
+  "scripts": {
+    "test": "./node_modules/.bin/babel-node spec/run.js",
+    "build": "./node_modules/.bin/babel src/logger.js --out-file dist/logger.js && ./node_modules/.bin/babel spec/logger.spec.js --out-file dist/logger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hunterchristian/logger.git"
+  },
+  "keywords": [
+    "logger"
+  ],
+  "author": "Hunter Hodnett",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hunterchristian/logger/issues"
+  },
+  "homepage": "https://github.com/hunterchristian/logger#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "invariant": "^2.2.2",
+    "jasmine": "^2.6.0"
+  }
+}
