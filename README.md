@@ -1,7 +1,7 @@
 # logger
 A utility for managing console logs within a JavaScript application
 
-## Usage
+# Usage
 ```javascript
 import Logger from 'logger';
 const logger = new Logger('nameOfThisFile');
@@ -97,7 +97,7 @@ Verify that a given variable is of a particular type.
 | variable | <code>\*</code> | the variable being verified |
 | type | <code>String</code> | the expected type of the variable |
 
-## Testing
+# Testing
 Tests are run with Jasmine: https://jasmine.github.io/index.html
 
 Since specs are written using ES2015 syntax, spec files must be transpiled using babel. I detail how I created this build
