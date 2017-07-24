@@ -1,85 +1,96 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _logger = require('../src/logger.js');
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _invariant = require('invariant');
-
-var _invariant2 = _interopRequireDefault(_invariant);
+var _logger2 = _interopRequireDefault(_logger);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 /**
- * Verify that a given variable is of a particular type.
- * @param {*} variable - the variable being verified
- * @param {String} type - the expected type of the variable
+ * Replace a function in the console object with another function.
+ * @param {String} consoleFuncName - the name of the console function to be replaced
+ * @param {Function} newFunc - the new function which will replace a console function
+ * @return {Function} origFunction;
  */
-function verifyVariableIsType(variable, type) {
-  (0, _invariant2.default)((typeof variable === 'undefined' ? 'undefined' : _typeof(variable)) === type, variable + ' must be a ' + type);
-}
-
-/**
- * Created by hunterhodnett on 7/24/17.
- */
-
-var Logger = function () {
-  /**
-   * Conctructor
-   * @param {String} moduleName - name of the module that is consuming Logger
-   */
-  function Logger(moduleName) {
-    _classCallCheck(this, Logger);
-
-    verifyVariableIsType(moduleName, 'string');
-    this.moduleName = moduleName;
-  }
-
-  /**
-   * Log a message to the browser console
-   * @param {String} message - message to be logged
+function replaceConsoleFunc(consoleFuncName, newFunc) {
+    var origFunction = console[consoleFuncName];
+    console[consoleFuncName] = newFunc;
+    return origFunction;
+} /**
+   * This module contains unit tests for the Logger class.
+   * 
+   * Created by hunterhodnett on 7/24/17.
    */
 
+describe('Logger', function () {
+    var origLog = void 0;
+    var origWarn = void 0;
+    var origError = void 0;
+    var mockLog = void 0;
+    var mockWarn = void 0;
+    var mockError = void 0;
 
-  _createClass(Logger, [{
-    key: 'log',
-    value: function log(message) {
-      verifyVariableIsType(message, 'string');
-      console.log(this.moduleName + ': ' + message);
-    }
+    beforeEach(function () {
+        mockLog = jasmine.createSpy('log');
+        mockWarn = jasmine.createSpy('warn');
+        mockError = jasmine.createSpy('error');
 
-    /**
-     * Log a warning to the console
-     * @param {String} message
-     */
+        origLog = replaceConsoleFunc('log', mockLog);
+        origWarn = replaceConsoleFunc('warn', mockWarn);
+        origError = replaceConsoleFunc('error', mockError);
+    });
 
-  }, {
-    key: 'warn',
-    value: function warn(message) {
-      verifyVariableIsType(message, 'string');
-      console.warn(this.moduleName + ': ' + message);
-    }
+    afterEach(function () {
+        replaceConsoleFunc('log', origLog);
+        replaceConsoleFunc('warn', origWarn);
+        replaceConsoleFunc('error', origError);
+    });
 
-    /**
-     * Log an error to the console
-     * @param {String} message
-     */
+    describe('constructor', function () {
+        it('should create a new Logger object without crashing', function () {
+            new _logger2.default('test');
+        });
 
-  }, {
-    key: 'error',
-    value: function error(message) {
-      verifyVariableIsType(message, 'string');
-      console.error(this.moduleName + ': ' + message);
-    }
-  }]);
+        it('should throw an error if a module name is not provided', function () {
+            expect(function () {
+                new _logger2.default();
+            }).toThrow();
+        });
+    });
 
-  return Logger;
-}();
+    describe('log', function () {
+        it('should call console.log with a module name and a message', function () {
+            var moduleName = 'moduleName';
+            var message = 'message';
+            var logger = new _logger2.default(moduleName);
 
-exports.default = Logger;
+            logger.log(message);
+
+            expect(mockLog).toHaveBeenCalledWith(moduleName + ': ' + message);
+        });
+    });
+
+    describe('warn', function () {
+        it('should call console.warn with a module name and a message', function () {
+            var moduleName = 'moduleName';
+            var message = 'message';
+            var logger = new _logger2.default(moduleName);
+
+            logger.warn(message);
+
+            expect(mockWarn).toHaveBeenCalledWith(moduleName + ': ' + message);
+        });
+    });
+
+    describe('error', function () {
+        it('should call console.error with a module name and a message', function () {
+            var moduleName = 'moduleName';
+            var message = 'message';
+            var logger = new _logger2.default(moduleName);
+
+            logger.error(message);
+
+            expect(mockError).toHaveBeenCalledWith(moduleName + ': ' + message);
+        });
+    });
+});
