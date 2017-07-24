@@ -1,3 +1,9 @@
+/**
+ * This module contains a logging utility which allows for centralized control over the format of application logs.
+ * 
+ * Created by hunterhodnett on 7/24/17.
+ */
+
 import invariant from 'invariant';
 
 /**
@@ -8,10 +14,6 @@ import invariant from 'invariant';
 function verifyVariableIsType(variable, type) {
     invariant(typeof variable === type, `${variable} must be a ${type}`);
 }
-
-/**
- * Created by hunterhodnett on 7/24/17.
- */
 
 class Logger {
     /**

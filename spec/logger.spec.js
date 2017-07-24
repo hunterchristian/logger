@@ -1,4 +1,6 @@
 /**
+ * This module contains unit tests for the Logger class.
+ * 
  * Created by hunterhodnett on 7/24/17.
  */
 
@@ -17,25 +19,72 @@ function replaceConsoleFunc(consoleFuncName, newFunc) {
 }
 
 describe('Logger', () => {
-    let origConsoleLog;
-    let origConsoleWarn;
-    let origConsoleError;
+    let origLog;
+    let origWarn;
+    let origError;
+    let mockLog;
+    let mockWarn;
+    let mockError;
 
     beforeEach(() => {
-        origConsoleLog = replaceConsoleFunc('log', jasmine.createSpy('log'));
-        origConsoleWarn = replaceConsoleFunc('warn', jasmine.createSpy('warn'));
-        origConsoleError = replaceConsoleFunc('error', jasmine.createSpy('error'));
+        mockLog = jasmine.createSpy('log');
+        mockWarn = jasmine.createSpy('warn');
+        mockError = jasmine.createSpy('error');
+        
+        origLog = replaceConsoleFunc('log', mockLog);
+        origWarn = replaceConsoleFunc('warn', mockWarn);
+        origError = replaceConsoleFunc('error', mockError);
     });
 
     afterEach(() => {
-        replaceConsoleFunc('log', origConsoleLog);
-        replaceConsoleFunc('warn', origConsoleWarn);
-        replaceConsoleFunc('error', origConsoleError);
+        replaceConsoleFunc('log', origLog);
+        replaceConsoleFunc('warn', origWarn);
+        replaceConsoleFunc('error', origError);
     });
 
     describe('constructor', () => {
         it('should create a new Logger object without crashing', () => {
             new Logger('test');
+        });
+        
+        it('should throw an error if a module name is not provided', () => {
+            expect(() => { new Logger(); }).toThrow();
+        });
+    });
+    
+    describe('log', () => {
+        it('should call console.log with a module name and a message', () => {
+            const moduleName = 'moduleName';
+            const message = 'message';
+            const logger = new Logger(moduleName);
+
+            logger.log(message);
+            
+            expect(mockLog).toHaveBeenCalledWith(`${moduleName}: ${message}`);
+        });
+    });
+
+    describe('warn', () => {
+        it('should call console.warn with a module name and a message', () => {
+            const moduleName = 'moduleName';
+            const message = 'message';
+            const logger = new Logger(moduleName);
+
+            logger.warn(message);
+
+            expect(mockWarn).toHaveBeenCalledWith(`${moduleName}: ${message}`);
+        });
+    });
+
+    describe('error', () => {
+        it('should call console.error with a module name and a message', () => {
+            const moduleName = 'moduleName';
+            const message = 'message';
+            const logger = new Logger(moduleName);
+
+            logger.error(message);
+
+            expect(mockError).toHaveBeenCalledWith(`${moduleName}: ${message}`);
         });
     });
 });

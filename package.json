@@ -4,7 +4,7 @@
   "description": "A utility for managing console logs within a JavaScript application",
   "main": "src/logger.js",
   "scripts": {
-    "test": "./node_modules/.bin/babel-node spec/run.js",
+    "test": "./node_modules/.bin/babel-node spec/run.js || true",
     "build": "./node_modules/.bin/babel src/logger.js --out-file dist/logger.js && ./node_modules/.bin/babel spec/logger.spec.js --out-file dist/logger.js"
   },
   "repository": {

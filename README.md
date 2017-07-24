@@ -17,8 +17,7 @@ logger.error('your error');
 
 <dl>
 <dt><a href="#Logger">Logger</a></dt>
-<dd><p>Created by hunterhodnett on 7/24/17.</p>
-</dd>
+<dd></dd>
 </dl>
 
 ## Functions
@@ -32,8 +31,6 @@ logger.error('your error');
 <a name="Logger"></a>
 
 ## Logger
-Created by hunterhodnett on 7/24/17.
-
 **Kind**: global class  
 
 * [Logger](#Logger)
@@ -97,8 +94,21 @@ Verify that a given variable is of a particular type.
 | variable | <code>\*</code> | the variable being verified |
 | type | <code>String</code> | the expected type of the variable |
 
+# Contributing
+1. Pull down the code into a local git repo
+2. `npm install`
+3. Make your changes (be sure to have unit tests covering your changes)
+4. Run the unit tests: `npm run test`
+5. If all of the unit tests pass, build the source code: `npm run build`
+6. Submit a pull request :)
+
 # Testing
 Tests are run with Jasmine: https://jasmine.github.io/index.html
+Tests can be run with the following command: `npm run test`
+
+Note that the "test" command in the "scripts" section of package.json has an "|| true" at the end. This is so that the
+script exits with exit code 0 to prevent the annoying "npm ERR!" logs that print out each time the tests are run.
+I got the idea from this github issue: https://github.com/npm/npm/issues/6124
 
 Since specs are written using ES2015 syntax, spec files must be transpiled using babel. I detail how I created this build
 step below.
