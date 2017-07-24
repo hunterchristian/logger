@@ -2,14 +2,15 @@
 A utility for managing console logs within a JavaScript application. This utility allows for centralized control over
 the format of application logs.
 
-#### Tables of contents
-[Usage](#usage)
-[Documentation generated from JSDocs in source code](#jsdoc)
-[Contributing](#contributing)
-[Testing](#testing)
+##### Tables of contents
+* [Usage](#usage)  
+* [Documentation generated from JSDocs in source code](#classes)  
+* [Contributing](#contributing)  
+* [Testing](#testing)  
 
-<a name="usage"/>
+<a name="usage"></a>
 # Usage
+
 ```javascript
 import Logger from 'logger';
 const logger = new Logger('nameOfThisFile');
@@ -20,7 +21,7 @@ logger.log('your log message');
 logger.warn('your warning');
 logger.error('your error');
 ```
-<a name="jsdoc"/>
+<a name="classes"></a>
 ## Classes
 
 <dl>
@@ -102,7 +103,7 @@ Verify that a given variable is of a particular type.
 | variable | <code>\*</code> | the variable being verified |
 | type | <code>String</code> | the expected type of the variable |
 
-<a name="contributing"/>
+<a name="contributing"></a>
 # Contributing
 1. Pull down the code into a local git repo
 2. Install the development dependencies: `npm install`
@@ -111,7 +112,7 @@ Verify that a given variable is of a particular type.
 5. If all of the unit tests pass, build the source code: `npm run build`
 6. Submit a pull request :)
 
-<a name="testing"/>
+<a name="testing"></a>
 # Testing
 Tests are run with Jasmine: https://jasmine.github.io/index.html
 Tests can be run with the following command: `npm run test`
